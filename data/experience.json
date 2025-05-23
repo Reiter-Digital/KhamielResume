@@ -1,0 +1,177 @@
+{
+  "experiences": [
+    {
+      "id": 1,
+      "title": "Science Research Specialist I",
+      "company": "National Fisheries Research and Development Institute",
+      "location": "Brackishwater Fisheries Research and Development Center",
+      "startDate": "Feb 2024",
+      "endDate": "Present",
+      "description": "Working as a Science Research Specialist at the National Fisheries Research and Development Institute focusing on brackishwater fisheries research.",
+      "achievements": [
+        "Contributing to fisheries research and development initiatives",
+        "Implementing research methodologies in brackishwater ecosystems",
+        "Analyzing data and preparing research reports",
+        "Collaborating with research teams on fisheries studies"
+      ],
+      "technologies": ["Fisheries Research", "Data Analysis", "Research Methodology", "Scientific Writing"],
+      "type": "work"
+    },
+    {
+      "id": 2,
+      "title": "Treasurer",
+      "company": "UP Fisheries Guild",
+      "location": "University of the Philippines Visayas",
+      "startDate": "2021",
+      "endDate": "2023",
+      "description": "Served as Treasurer for the UP Fisheries Guild, managing finances and contributing to organization activities.",
+      "achievements": [
+        "Managed financial resources and budgeting for the organization",
+        "Co-keeper of the Nautilus at the University of the Philippines Fisheries Guild",
+        "Participated in organizational planning and events",
+        "Ensured proper financial record-keeping and reporting"
+      ],
+      "technologies": ["Financial Management", "Organizational Leadership", "Event Planning", "Team Collaboration"],
+      "type": "work"
+    },
+    {
+      "id": 3,
+      "title": "Communications and Programs Intern",
+      "company": "Team KIKO Internship Program",
+      "location": "Pasay City, Philippines",
+      "startDate": "Mar 2021",
+      "endDate": "Oct 2021",
+      "description": "Participated in the Team KIKO Internship Program, focusing on communications and program implementation.",
+      "achievements": [
+        "Assisted in developing communication materials and strategies",
+        "Supported program implementation and coordination",
+        "Engaged in community outreach activities",
+        "Gained experience in communications and program management"
+      ],
+      "technologies": ["Communications", "Program Management", "Community Outreach", "Content Development"],
+      "type": "work"
+    },
+    {
+      "id": 4,
+      "title": "Bachelor of Science in Fisheries",
+      "company": "University of the Philippines Visayas",
+      "location": "Miagao, Iloilo",
+      "startDate": "2019",
+      "endDate": "2023",
+      "description": "Earned a Bachelor of Science in Fisheries degree with Cum Laude honors, focusing on fisheries science and research methodologies.",
+      "achievements": [
+        "Graduated Cum Laude (2023)",
+        "Conducted research on fisheries and aquatic resources",
+        "Active member of the UP Fisheries Guild (2021-2023)",
+        "Developed expertise in fisheries management and research"
+      ],
+      "technologies": ["Fisheries Science", "Aquatic Research", "Marine Biology", "Environmental Science"],
+      "type": "education"
+    },
+    {
+      "id": 5,
+      "title": "Senior High School",
+      "company": "Negros Occidental High School",
+      "location": "Bacolod City",
+      "startDate": "2013",
+      "endDate": "2019",
+      "description": "Completed Senior High School education with High Honors, establishing a strong academic foundation.",
+      "achievements": [
+        "Graduated with High Honors (2019)",
+        "Participated in academic competitions and extracurricular activities",
+        "Developed interest in science and research",
+        "Active in student organizations"
+      ],
+      "technologies": ["Science", "Mathematics", "Research", "Academic Excellence"],
+      "type": "education"
+    },
+    {
+      "id": 6,
+      "title": "Elementary Education",
+      "company": "Sum-ag Elementary School",
+      "location": "Bacolod City",
+      "startDate": "2007",
+      "endDate": "2013",
+      "description": "Completed primary education with Salutatorian honors, demonstrating early academic excellence.",
+      "achievements": [
+        "Graduated as Salutatorian (2013)",
+        "Participated in school competitions and activities",
+        "Received recognition for academic excellence",
+        "Developed foundation for continued educational success"
+      ],
+      "technologies": ["Basic Education", "Academic Fundamentals", "Early Learning", "Primary Studies"],
+      "type": "education"
+    }
+  ],
+  "skills": {
+    "technical": [
+      "Fisheries Research",
+      "Scientific Writing",
+      "Data Collection & Analysis",
+      "Research Methodology",
+      "Microsoft Office Suite",
+      "Laboratory Techniques",
+      "Statistical Analysis",
+      "Experimental Design",
+      "Environmental Assessment",
+      "Technical Documentation"
+    ],
+    "soft": [
+      "Communication",
+      "Team Leadership",
+      "Time Management",
+      "Problem Solving",
+      "Critical Thinking",
+      "Project Management",
+      "Attention to Detail",
+      "Decision Making",
+      "Adaptability",
+      "Organization"
+    ]
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "Giant Freshwater Prawn Polyculture",
+      "description": "Technical training on giant freshwater prawn polyculture techniques, focusing on sustainable aquaculture practices.",
+      "technologies": ["Aquaculture", "Sustainable Practices", "Freshwater Systems"],
+      "image": "/assets/img/National_Fisheries_Research_and_Development_Institute_(NFRDI).svg",
+      "liveUrl": "#",
+      "githubUrl": "#"
+    },
+    {
+      "id": 2,
+      "title": "Marine Species Status Assessment",
+      "description": "Research on high-value marine species, analyzing status and development trends in sustainable aquaculture practices.",
+      "technologies": ["Marine Biology", "Conservation", "Resource Management"],
+      "image": "/assets/img/UP_Visayas_Logo.svg",
+      "liveUrl": "#",
+      "githubUrl": "#"
+    },
+    {
+      "id": 3,
+      "title": "Biodiversity Assessment of Iloilo Beach",
+      "description": "Conducted biodiversity assessment of Iloilo Beach to document and analyze marine ecosystems and species diversity.",
+      "technologies": ["Biodiversity", "Ecological Assessment", "Field Research"],
+      "image": "/assets/img/UP_Visayas_Logo.svg",
+      "liveUrl": "#",
+      "githubUrl": "#"
+    }
+  ],
+  "certifications": [
+    {
+      "id": 1,
+      "title": "RA 1080 (BOARD) - Fisheries Professional",
+      "organization": "Professional Regulation Commission",
+      "date": "Oct 2023",
+      "description": "Passed the Fisheries Professional licensure examination with a rating of 75%"
+    },
+    {
+      "id": 2, 
+      "title": "ISO 9001:2015 Quality Management System",
+      "organization": "National Fisheries Research and Development Institute",
+      "date": "Apr 2024",
+      "description": "Completed training on QMS principles and implementation"
+    }
+  ]
+}
