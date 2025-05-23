@@ -73,20 +73,36 @@ const initIntersectionObserver = () => {
 // Load and render experience data with performance optimizations
 const loadExperienceData = async () => {
   try {
-    // Try both paths to handle both development and production environments
+    // Get the base URL for assets based on environment
+    const baseURL = window.location.pathname.includes('/KhamielResume/') ? '/KhamielResume' : '';
+    
+    // Try multiple paths to handle both development and production environments
     let response;
-    try {
-      // First try the development path
-      response = await fetch('/src/data/experience.json', {
-        priority: 'high',
-        cache: 'force-cache'
-      });
-    } catch (error) {
-      // If that fails, try the production path
-      response = await fetch('/data/experience.json', {
-        priority: 'high',
-        cache: 'force-cache'
-      });
+    const paths = [
+      '/src/data/experience.json',          // Development path
+      '/data/experience.json',              // Production path without base
+      `${baseURL}/data/experience.json`,    // Production path with base
+      './data/experience.json',             // Relative path
+      'data/experience.json'                // Another relative path
+    ];
+    
+    // Try each path until one works
+    let error;
+    for (const path of paths) {
+      try {
+        response = await fetch(path, {
+          priority: 'high',
+          cache: 'force-cache'
+        });
+        if (response.ok) break;
+      } catch (e) {
+        error = e;
+        console.log(`Failed to fetch from ${path}:`, e);
+      }
+    }
+    
+    if (!response || !response.ok) {
+      throw error || new Error('Failed to fetch experience data from all paths');
     }
     const data = await response.json();
     
@@ -185,21 +201,25 @@ const renderProjects = (projects) => {
   const fixImagePath = (imagePath) => {
     if (!imagePath) return null;
     
-    // For development environment, keep the path as is
-    // For production, the path will be handled by Vite's base path configuration
+    // Get the base URL for assets based on environment
+    const baseURL = window.location.pathname.includes('/KhamielResume/') ? '/KhamielResume' : '';
     
-    // If the path starts with /src, we're in development
-    if (imagePath.startsWith('/src/')) {
-      return imagePath;
+    // If we're in production (GitHub Pages), prepend the base URL
+    if (baseURL && imagePath.startsWith('/')) {
+      // For paths that start with /assets or /src/assets
+      if (imagePath.includes('/assets/')) {
+        // Normalize the path to remove /src if present
+        const normalizedPath = imagePath.replace(/^\/src\/assets/, '/assets');
+        return `${baseURL}${normalizedPath}`;
+      }
     }
     
-    // If the path starts with /assets, we need to handle it for both environments
+    // For development environment
     if (imagePath.startsWith('/assets/')) {
-      // In development, we might need to add /src
       return `/src${imagePath}`;
     }
     
-    // Default case
+    // Default case - return the path as is
     return imagePath;
   };
 

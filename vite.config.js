@@ -8,6 +8,8 @@ const isProduction = process.env.NODE_ENV === 'production';
 export default defineConfig({
   // Base path for GitHub Pages - only apply in production
   base: isProduction ? '/KhamielResume/' : '/',
+  // Ensure assets are properly handled
+  publicDir: 'public',
   root: '.',
   plugins: [
     compression({
