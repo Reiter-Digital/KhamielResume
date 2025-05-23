@@ -135,7 +135,7 @@
       "title": "Giant Freshwater Prawn Polyculture",
       "description": "Technical training on giant freshwater prawn polyculture techniques, focusing on sustainable aquaculture practices.",
       "technologies": ["Aquaculture", "Sustainable Practices", "Freshwater Systems"],
-      "image": "/assets/img/National_Fisheries_Research_and_Development_Institute_(NFRDI).svg",
+      "image": "assets/img/National_Fisheries_Research_and_Development_Institute_(NFRDI).svg",
       "liveUrl": "#",
       "githubUrl": "#"
     },
@@ -144,7 +144,7 @@
       "title": "Marine Species Status Assessment",
       "description": "Research on high-value marine species, analyzing status and development trends in sustainable aquaculture practices.",
       "technologies": ["Marine Biology", "Conservation", "Resource Management"],
-      "image": "/assets/img/UP_Visayas_Logo.svg",
+      "image": "assets/img/UP_Visayas_Logo.svg",
       "liveUrl": "#",
       "githubUrl": "#"
     },
@@ -153,7 +153,7 @@
       "title": "Biodiversity Assessment of Iloilo Beach",
       "description": "Conducted biodiversity assessment of Iloilo Beach to document and analyze marine ecosystems and species diversity.",
       "technologies": ["Biodiversity", "Ecological Assessment", "Field Research"],
-      "image": "/assets/img/UP_Visayas_Logo.svg",
+      "image": "assets/img/UP_Visayas_Logo.svg",
       "liveUrl": "#",
       "githubUrl": "#"
     }
