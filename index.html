@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <title>Shuet Khamiel Apoyon - Science Research Specialist</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Shuet Khamiel Apoyon - Science Research Specialist at National Fisheries Research and Development Institute with expertise in fisheries research and aquatic sciences. View my professional timeline and achievements.">
+  <meta name="keywords" content="fisheries research, research specialist, scientific research, aquatic science, fisheries professional, Shuet Khamiel Apoyon">
+  <meta name="author" content="Shuet Khamiel Apoyon">
+  <link rel="canonical" href="https://yourusername.github.io/KhamielResume/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourusername.github.io/KhamielResume/">
+  <meta property="og:title" content="Shuet Khamiel Apoyon - Science Research Specialist">
+  <meta property="og:description" content="Science Research Specialist at National Fisheries Research and Development Institute with expertise in fisheries research and aquatic sciences.">
+  <meta property="og:image" content="/src/assets/img/headshot.webp">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://yourusername.github.io/KhamielResume/">
+  <meta property="twitter:title" content="Shuet Khamiel Apoyon - Science Research Specialist">
+  <meta property="twitter:description" content="Science Research Specialist at National Fisheries Research and Development Institute with expertise in fisheries research and aquatic sciences.">
+  <meta property="twitter:image" content="/src/assets/img/headshot.webp">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#64FFDA">
+  
+  <!-- Preload critical assets -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap"></noscript>
+  
+  <!-- Preload critical images -->
+  <link rel="preload" as="image" href="/src/assets/img/ocean.webp" type="image/webp">
+  <link rel="preload" as="image" href="/src/assets/img/headshot.webp" type="image/webp">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-primary/60 backdrop-blur-md border-b border-white/10">
+    <nav class="container mx-auto px-4 sm:px-6 py-4">
+      <div class="flex justify-between items-center">
+        <a href="#hero" class="text-xl font-bold text-accent">Khamiel</a>
+        
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex space-x-8">
+          <a href="#hero" class="hover:text-accent transition-colors">Home</a>
+          <a href="#timeline" class="hover:text-accent transition-colors">Experience</a>
+          <a href="#skills" class="hover:text-accent transition-colors">Skills</a>
+          <a href="#certifications" class="hover:text-accent transition-colors">Certifications</a>
+          <a href="#projects" class="hover:text-accent transition-colors">Projects</a>
+          <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
+        </div>
+        
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden flex flex-col space-y-1 p-2" aria-label="Toggle mobile menu" onclick="toggleMobileMenu()">
+          <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+          <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+          <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+        </button>
+        
+        <a href="/src/assets/pdf/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm py-2 px-3 sm:px-4 hidden sm:inline-flex" aria-label="Download resume PDF">
+          <span class="hidden sm:inline">Download CV</span>
+          <span class="sm:hidden">CV</span>
+        </a>
+      </div>
+      
+      <!-- Mobile Navigation Menu -->
+      <div id="mobile-menu" class="md:hidden absolute top-full left-0 right-0 bg-primary/95 backdrop-blur-md border-b border-white/10 transform -translate-y-full opacity-0 invisible transition-all duration-300">
+        <div class="container mx-auto px-4 py-6">
+          <div class="flex flex-col space-y-4">
+            <a href="#hero" class="mobile-nav-link text-lg py-2 hover:text-accent transition-colors" onclick="toggleMobileMenu()">Home</a>
+            <a href="#timeline" class="mobile-nav-link text-lg py-2 hover:text-accent transition-colors" onclick="toggleMobileMenu()">Experience</a>
+            <a href="#skills" class="mobile-nav-link text-lg py-2 hover:text-accent transition-colors" onclick="toggleMobileMenu()">Skills</a>
+            <a href="#certifications" class="mobile-nav-link text-lg py-2 hover:text-accent transition-colors" onclick="toggleMobileMenu()">Certifications</a>
+            <a href="#projects" class="mobile-nav-link text-lg py-2 hover:text-accent transition-colors" onclick="toggleMobileMenu()">Projects</a>
+            <a href="#contact" class="mobile-nav-link text-lg py-2 hover:text-accent transition-colors" onclick="toggleMobileMenu()">Contact</a>
+            <a href="/src/assets/pdf/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary text-center mt-4" aria-label="Download resume PDF">
+              Download CV
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 sm:pt-0">
+      <div class="container mx-auto px-4 sm:px-6 text-center relative z-10">
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-4 sm:mb-6 float-animation" data-aos="fade-up">
+            Shuet Khamiel <span class="text-gradient">Apoyon</span>
+          </h1>
+          <h2 class="text-lg sm:text-xl md:text-2xl font-medium text-accent mb-4 sm:mb-6 float-animation" data-aos="fade-up" data-aos-delay="200">
+            SCIENCE RESEARCH SPECIALIST
+          </h2>
+          <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed float-animation px-4 sm:px-0" data-aos="fade-up" data-aos-delay="400">
+            Fisheries professional dedicated to advancing aquatic science through research, conservation, and sustainable resource management practices in brackishwater ecosystems.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center float-animation px-4 sm:px-0" data-aos="fade-up" data-aos-delay="600">
+            <a href="/src/assets/pdf/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary w-full sm:w-auto justify-center" aria-label="Download resume PDF">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              Download PDF
+            </a>
+            <a href="#contact" class="btn-secondary w-full sm:w-auto justify-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              Contact Me
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Scroll indicator -->      
+      <div class="scroll-indicator-container">
+        <div class="scroll-indicator">
+          <div class="scroll-wheel"></div>
+        </div>
+        <p class="scroll-text">Scroll Down</p>
+      </div>
+      
+      <!-- Ocean background with blur -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 bg-black/40 z-0"></div>
+        <img src="/src/assets/img/ocean.webp" alt="Ocean background" 
+             srcset="/src/assets/img/ocean.webp 2000w, /src/assets/img/ocean.webp 1500w, /src/assets/img/ocean.webp 800w" 
+             sizes="100vw" 
+             class="absolute inset-0 w-full h-full object-cover blur-md z-[-1]" 
+             loading="eager" 
+             fetchpriority="high">
+      </div>
+      
+      <!-- Profile Image -->
+      <div class="absolute bottom-10 right-10 md:bottom-20 md:right-20 w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-accent shadow-xl hidden md:block" data-aos="fade-up" data-aos-delay="800">
+        <img src="/src/assets/img/headshot.webp" alt="Shuet Khamiel Apoyon" 
+             srcset="/src/assets/img/headshot.webp 300w" 
+             sizes="(min-width: 768px) 128px, 96px" 
+             class="w-full h-full object-cover" 
+             loading="eager">
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-12 sm:py-16 md:py-20 relative">
+      <div class="container mx-auto px-4 sm:px-6">
+        <h2 class="section-heading" data-aos="fade-up">Professional Timeline</h2>
+        
+        <div class="relative max-w-6xl mx-auto">
+          <!-- Timeline line -->
+          <div class="timeline-line hidden md:block"></div>
+          
+          <!-- Timeline container -->
+          <div id="timeline-container" class="grid grid-cols-1 md:grid-cols-timeline gap-6 sm:gap-8 md:gap-0">
+            <!-- Timeline items will be dynamically inserted here -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-12 sm:py-16 md:py-20 bg-slate-900/50">
+      <div class="container mx-auto px-4 sm:px-6">
+        <h2 class="section-heading" data-aos="fade-up">Skills & Expertise</h2>
+        
+        <div id="skills-container" class="max-w-4xl mx-auto">
+          <!-- Skills will be dynamically inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-12 sm:py-16 md:py-20">
+      <div class="container mx-auto px-4 sm:px-6">
+        <h2 class="section-heading" data-aos="fade-up">Professional Certifications</h2>
+        
+        <div id="certifications-container" class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          <!-- Certifications will be dynamically inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-12 sm:py-16 md:py-20 bg-slate-900/50">
+      <div class="container mx-auto px-4 sm:px-6">
+        <h2 class="section-heading" data-aos="fade-up">Featured Projects</h2>
+        
+        <div id="projects-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
+          <!-- Projects will be dynamically inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 sm:py-16 md:py-20 bg-slate-900/50">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="section-heading" data-aos="fade-up">Let's Connect</h2>
+        
+        <div class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+          <p class="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8 px-4 sm:px-0">
+            Interested in collaboration or have questions about my research? I'd love to hear from you.
+          </p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-xl mx-auto mb-6 sm:mb-8">
+            <!-- Email -->
+            <div class="glass-card p-4 sm:p-6 flex flex-col items-center">
+              <a href="mailto:kahmiel20@gmail.com" class="text-accent hover:text-accent-dark transition-colors" aria-label="Send email">
+                <svg class="w-8 h-8 mb-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              </a>
+              <h3 class="text-lg font-medium mb-1">Email</h3>
+              <a href="mailto:kahmiel20@gmail.com" class="text-accent hover:text-accent-dark transition-colors text-sm sm:text-base break-all">
+                kahmiel20@gmail.com
+              </a>
+            </div>
+            
+            <!-- Phone -->
+            <div class="glass-card p-4 sm:p-6 flex flex-col items-center">
+              <a href="tel:+639289793394" class="text-accent hover:text-accent-dark transition-colors" aria-label="Call phone number">
+                <svg class="w-8 h-8 mb-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                </svg>
+              </a>
+              <h3 class="text-lg font-medium mb-1">Phone</h3>
+              <a href="tel:+639289793394" class="text-accent hover:text-accent-dark transition-colors text-sm sm:text-base">
+                +63 928 979 3394
+              </a>
+            </div>
+            
+            <!-- LinkedIn -->
+            <div class="glass-card p-4 sm:p-6 flex flex-col items-center sm:col-span-2">
+              <a href="https://ph.linkedin.com/in/shuet-khamiel-apoyon-b24a58206" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-dark transition-colors" aria-label="LinkedIn profile">
+                <svg class="w-8 h-8 mb-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+              <h3 class="text-lg font-medium mb-1">LinkedIn</h3>
+              <a href="https://ph.linkedin.com/in/shuet-khamiel-apoyon-b24a58206" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-dark transition-colors text-sm sm:text-base text-center">
+                Shuet Khamiel Apoyon
+              </a>
+            </div>
+          </div>
+          
+          <a href="/src/assets/pdf/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary w-full sm:w-auto" aria-label="Download resume PDF">
+            Download Full Resume
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-primary border-t border-white/10 py-6 sm:py-8">
+    <div class="container mx-auto px-4 sm:px-6 text-center">
+      <p class="text-gray-400 text-sm">
+        &copy; 2025 Shuet Khamiel Apoyon
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
