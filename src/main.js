@@ -73,28 +73,40 @@ const initIntersectionObserver = () => {
 // Load and render experience data with performance optimizations
 const loadExperienceData = async () => {
   try {
+    console.log('Starting to load experience data');
+    
+    // Force cache reload - IMPORTANT: This might be the issue with stale data
+    const cacheBuster = new Date().getTime();
+    
     // Get the base URL for assets based on environment
     const baseURL = window.location.pathname.includes('/KhamielResume/') ? '/KhamielResume' : '';
+    console.log('Base URL determined as:', baseURL);
     
     // Try multiple paths to handle both development and production environments
     let response;
     const paths = [
-      '/src/data/experience.json',          // Development path
-      '/data/experience.json',              // Production path without base
-      `${baseURL}/data/experience.json`,    // Production path with base
-      './data/experience.json',             // Relative path
-      'data/experience.json'                // Another relative path
+      `/data/experience.json?t=${cacheBuster}`,              // Try this first for npm run dev
+      `/src/data/experience.json?t=${cacheBuster}`,          // Development path
+      `${baseURL}/data/experience.json?t=${cacheBuster}`,    // Production path with base
+      `./data/experience.json?t=${cacheBuster}`,             // Relative path
+      `data/experience.json?t=${cacheBuster}`                // Another relative path
     ];
     
     // Try each path until one works
     let error;
+    let successPath;
     for (const path of paths) {
       try {
+        console.log(`Attempting to fetch from ${path}`);
         response = await fetch(path, {
           priority: 'high',
-          cache: 'force-cache'
+          cache: 'no-store' // Force fresh data
         });
-        if (response.ok) break;
+        if (response.ok) {
+          successPath = path;
+          console.log(`Successfully fetched from ${path}`);
+          break;
+        }
       } catch (e) {
         error = e;
         console.log(`Failed to fetch from ${path}:`, e);
@@ -105,16 +117,52 @@ const loadExperienceData = async () => {
       throw error || new Error('Failed to fetch experience data from all paths');
     }
     const data = await response.json();
+    console.log("Loaded data from", successPath, ":", data);
+    console.log("Data has research?", Boolean(data.research));
+    console.log("Data has references?", Boolean(data.references));
     
     // Prioritize above-the-fold content first
-    renderTimeline(data.experiences);
+    if (data.experiences) {
+      console.log("Rendering timeline with", data.experiences.length, "experiences");
+      renderTimeline(data.experiences);
+    } else {
+      console.error("No experiences data found");
+    }
+    
+    // Clear all containers first (in case they have stale content)
+    document.getElementById('skills-container').innerHTML = '';
+    document.getElementById('research-container').innerHTML = '';
+    document.getElementById('certifications-container').innerHTML = '';
+    document.getElementById('references-container').innerHTML = '';
     
     // Defer below-the-fold content rendering
     setTimeout(() => {
-      renderSkills(data.skills);
+      if (data.skills) {
+        console.log("Rendering skills:", data.skills);
+        renderSkills(data.skills);
+      }
+      
       requestAnimationFrame(() => {
-        renderProjects(data.projects);
-        renderCertifications(data.certifications);
+        if (data.research) {
+          console.log("Rendering research:", data.research);
+          renderResearch(data.research);
+        } else {
+          console.error("No research data found");
+        }
+        
+        if (data.certifications) {
+          console.log("Rendering certifications:", data.certifications);
+          renderCertifications(data.certifications);
+        } else {
+          console.error("No certifications data found");
+        }
+        
+        if (data.references) {
+          console.log("Rendering references:", data.references);
+          renderReferences(data.references);
+        } else {
+          console.error("No references data found");
+        }
       });
     }, 0);
   } catch (error) {
@@ -129,13 +177,13 @@ const renderTimeline = (experiences) => {
 
   const timelineHTML = experiences.map((exp, index) => {
     const isEven = index % 2 === 0;
-    const sideClass = isEven ? 'md:pr-10 md:text-right' : 'md:pl-10 md:text-left md:col-start-3';
+    const sideClass = isEven ? 'md:pr-10 md:text-left' : 'md:pl-10 md:text-left md:col-start-3';
     const iconClass = exp.type === 'education' ? 'academic-cap' : 'briefcase';
     
     return `
       <div class="relative ${sideClass} mb-12" data-aos="fade-${isEven ? 'right' : 'left'}" data-aos-delay="${index * 100}">
-        <div class="glass-card p-6">
-          <div class="flex items-center ${isEven ? 'md:justify-end' : 'justify-start'} mb-3">
+        <div class="glass-card p-6 h-full min-h-[320px] flex flex-col">
+          <div class="flex items-center ${isEven ? 'md:justify-start' : 'md:justify-start'} mb-3">
             <svg class="w-5 h-5 text-accent ${isEven ? 'md:order-2 md:ml-2' : 'mr-2'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               ${iconClass === 'briefcase' ? 
                 '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m8 0H8m8 0v2a2 2 0 01-2 2H10a2 2 0 01-2-2V8m8 0V6a2 2 0 00-2-2H10a2 2 0 00-2 2v2m8 0v8a2 2 0 01-2 2H10a2 2 0 01-2-2v-8"></path>' :
@@ -145,18 +193,20 @@ const renderTimeline = (experiences) => {
             <span class="text-accent font-medium">${exp.startDate} - ${exp.endDate}</span>
           </div>
           
-          <h3 class="text-xl font-bold mb-2">${exp.title}</h3>
-          <h4 class="text-accent font-medium mb-3">${exp.company} • ${exp.location}</h4>
-          <p class="text-gray-300 mb-4">${exp.description}</p>
-          
-          <div class="mb-4">
-            <h5 class="font-medium mb-2">Key Achievements:</h5>
-            <ul class="text-sm text-gray-300 space-y-1">
-              ${exp.achievements.map(achievement => `<li class="flex items-start"><span class="text-accent mr-2">•</span>${achievement}</li>`).join('')}
-            </ul>
+          <div class="flex-grow">
+            <h3 class="text-xl font-bold mb-2">${exp.title}</h3>
+            <h4 class="text-accent font-medium mb-3">${exp.company} • ${exp.location}</h4>
+            <p class="text-gray-300 mb-4">${exp.description}</p>
+            
+            <div class="mb-4">
+              <h5 class="font-medium mb-2">Key Achievements:</h5>
+              <ul class="text-sm text-gray-300 space-y-1">
+                ${exp.achievements.map(achievement => `<li class="flex items-start"><span class="text-accent mr-2">•</span>${achievement}</li>`).join('')}
+              </ul>
+            </div>
           </div>
           
-          <div class="flex flex-wrap gap-2">
+          <div class="mt-auto flex flex-wrap gap-2">
             ${exp.technologies.map(tech => `<span class="skill-pill text-xs">${tech}</span>`).join('')}
           </div>
         </div>
@@ -192,57 +242,40 @@ const renderSkills = (skills) => {
   skillsContainer.innerHTML = skillsHTML;
 };
 
-// Render projects section
-const renderProjects = (projects) => {
-  const projectsContainer = document.getElementById('projects-container');
-  if (!projectsContainer) return;
+// Render research section
+const renderResearch = (research) => {
+  console.log('Render research called with:', research);
+  const researchContainer = document.getElementById('research-container');
+  console.log('Research container found:', researchContainer);
+  if (!researchContainer) return;
+  if (!research || !Array.isArray(research)) {
+    console.error('Research data is not valid:', research);
+    return;
+  }
 
-  // Function to fix image paths to work in both development and production
-  const fixImagePath = (imagePath) => {
-    if (!imagePath) return null;
-    
-    // Get the base URL for assets based on environment
-    const baseURL = window.location.pathname.includes('/KhamielResume/') ? '/KhamielResume' : '';
-    
-    // If we're in production (GitHub Pages), prepend the base URL
-    if (baseURL && imagePath.startsWith('/')) {
-      // For paths that start with /assets or /src/assets
-      if (imagePath.includes('/assets/')) {
-        // Normalize the path to remove /src if present
-        const normalizedPath = imagePath.replace(/^\/src\/assets/, '/assets');
-        return `${baseURL}${normalizedPath}`;
-      }
-    }
-    
-    // For development environment
-    if (imagePath.startsWith('/assets/')) {
-      return `/src${imagePath}`;
-    }
-    
-    // Default case - return the path as is
-    return imagePath;
-  };
-
-  const projectsHTML = projects.map((project, index) => `
-    <div class="glass-card overflow-hidden" data-aos="fade-up" data-aos-delay="${index * 100}">
-      <div class="aspect-video bg-slate-800 bg-opacity-50 flex items-center justify-center">
-        ${project.image ? `<img src="${fixImagePath(project.image)}" alt="${project.title}" class="w-full h-full object-contain p-4" loading="lazy">` :
-          `<svg class="w-16 h-16 text-accent opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-          </svg>`
-        }
-      </div>
-      <div class="p-6">
-        <h3 class="text-xl font-bold mb-3">${project.title}</h3>
-        <p class="text-gray-300 mb-4">${project.description}</p>
-        <div class="flex flex-wrap gap-2">
-          ${project.technologies.map(tech => `<span class="skill-pill text-xs">${tech}</span>`).join('')}
+  console.log('Generating research HTML for', research.length, 'items');
+  const researchHTML = research.map(item => {
+    console.log('Processing research item:', item);
+    return `
+      <div class="glass-card p-6 hover:shadow-accent-glow transition-all duration-300" data-aos="fade-up">
+        <div class="flex flex-col gap-4">
+          <div class="flex-grow">
+            <h3 class="text-xl font-bold mb-2">${item.title}</h3>
+            <p class="text-gray-400 mb-2 italic">${item.organization} | ${item.date}</p>
+            <p class="text-gray-300 mb-4">${item.description}</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              ${item.technologies.map(tech => `<span class="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium">${tech}</span>`).join('')}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
-  projectsContainer.innerHTML = projectsHTML;
+
+  console.log('Setting research HTML:', researchHTML.substring(0, 100) + '...');
+  researchContainer.innerHTML = researchHTML;
+  console.log('Research HTML set');
 };
 
 // Render certifications section
@@ -250,23 +283,29 @@ const renderCertifications = (certifications) => {
   const certificationsContainer = document.getElementById('certifications-container');
   if (!certificationsContainer || !certifications) return;
 
-  const certificationsHTML = certifications.map((cert, index) => `
-    <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="${index * 100}">
-      <div class="flex items-center mb-4">
-        <div class="w-10 h-10 rounded-full bg-accent bg-opacity-20 flex items-center justify-center mr-3">
-          <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-          </svg>
+  console.log('Rendering certifications:', certifications);
+
+  // Remove ISO certification if present (only show first one)
+  const filteredCertifications = certifications.length > 1 ? [certifications[0]] : certifications;
+  console.log('Filtered certifications:', filteredCertifications);
+
+  const certificationsHTML = filteredCertifications.map(cert => {
+    return `
+      <div class="glass-card overflow-hidden" data-aos="fade-up">
+        <div class="p-6">
+          <div class="mb-4 flex items-center justify-center bg-accent/20 w-12 h-12 rounded-full">
+            <span class="text-accent font-bold text-2xl">✓</span>
+          </div>
+          <h3 class="text-xl font-bold mb-2">${cert.title}</h3>
+          <p class="text-gray-400 mb-4">${cert.organization}</p>
+          <p class="text-gray-300 mb-4">${cert.description}</p>
+          <p class="text-gray-400 text-sm italic">Issued: ${cert.date}</p>
         </div>
-        <h3 class="text-xl font-bold">${cert.title}</h3>
       </div>
-      <div class="ml-13">
-        <p class="text-accent font-medium mb-2">${cert.organization}</p>
-        <p class="text-gray-300 mb-3">${cert.description}</p>
-        <p class="text-gray-400 text-sm">Issued: ${cert.date}</p>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
+
+
 
   certificationsContainer.innerHTML = certificationsHTML;
 };
@@ -477,4 +516,36 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Export for potential external use
+// Render references section
+const renderReferences = (references) => {
+  console.log('Render references called with:', references);
+  const referencesContainer = document.getElementById('references-container');
+  console.log('References container found:', referencesContainer);
+  if (!referencesContainer) return;
+  if (!references || !Array.isArray(references)) {
+    console.error('References data is not valid:', references);
+    return;
+  }
+
+  console.log('Generating references HTML for', references.length, 'items');
+  const referencesHTML = references.map(reference => {
+    console.log('Processing reference item:', reference);
+    return `
+      <div class="glass-card p-6 hover:shadow-accent-glow transition-all duration-300" data-aos="fade-up">
+        <div class="flex flex-col gap-2">
+          <h3 class="text-xl font-bold">${reference.name}</h3>
+          <p class="text-gray-300">${reference.title}</p>
+          <a href="mailto:${reference.email}" class="text-accent hover:text-accent-dark transition-colors break-all">
+            ${reference.email}
+          </a>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  console.log('Setting references HTML:', referencesHTML.substring(0, 100) + '...');
+  referencesContainer.innerHTML = referencesHTML;
+  console.log('References HTML set');
+};
+
 export { initAOS, loadExperienceData };
